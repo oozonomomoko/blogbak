@@ -92,7 +92,7 @@
             $.ajax({
                 type: "GET",
                 contentType: "application/x-www-form-urlencoded; charset=UTF-8",
-                url: "/blog/day/" + id,
+                url: "../day/" + id,
                 dataType: "json",
                 success: function (list) {
                     if (renderTime - lastRenderTime > 0) {
