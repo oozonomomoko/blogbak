@@ -185,9 +185,12 @@
                 'needRoot': true,
                 'change':function(date){
                     console.log(date);
-                    window.location.href = '#' + date;
-                    showList(date);
-                }
+                    if(date>'2019-08-08') {
+                        window.location.href = '#' + date;
+                        showList(date);
+                    } else {
+                        window.location.href = '/blog/v1/blogList.html#' + date;}
+                    }
             });
             window.onpopstate = function(){
                 let day = jumpByHref();
