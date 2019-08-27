@@ -59,7 +59,7 @@ window.Nogipic = (function () {
             
             //DOM
 			this.rootEle = document.querySelector('.nogipic');
-            if (!this.rootEle) {
+            if (this.rootEle) this.rootEle.remove();
                 this.rootEle = document.createElement('div');
                 this.span = document.createElement('span');
                 this.imgEle = document.createElement('img');
@@ -87,7 +87,6 @@ window.Nogipic = (function () {
                 // 绑定事件：拖拽 缩放 前 后 
                 // bind events: drag scale previous next close
                 this.bindDrag();
-            }
 
             //style
             if (!document.getElementById('nogipicstyle')) {
