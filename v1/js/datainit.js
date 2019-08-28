@@ -17,11 +17,8 @@ var zh = {
     0: "周日"
 };
 
-function hasContent(ele) {
-    if (ele && ele.textContent && ele.textContent.trim()) {
-        return true;
-    }
-    return false;
+function hasContent(ele, transele) {
+    return ele && ele.textContent && ele.textContent.trim() && ele.textContent != transele.textContent;
 }
 
 function contactTrans(src, trans) {
@@ -30,7 +27,7 @@ function contactTrans(src, trans) {
         return;
     }
     for (var i = 0; i < len; i++) {
-        if ('#text' == src.childNodes[i].nodeName && hasContent(src.childNodes[i])) {
+        if ('#text' == src.childNodes[i].nodeName && hasContent(src.childNodes[i],trans.childNodes[i])) {
             src.insertBefore($.parseHTML('<p class="transLine">' + trans.childNodes[i].textContent + '</p>')[0], src.childNodes[i]);
             trans.insertBefore(document.createElement('p'), trans.childNodes[i]);
             i++;
