@@ -1712,9 +1712,7 @@ li.pager_btn.pager_btn_next,li.pager_btn.pager_btn_prev {
       .blog_contents .list_card .box .date {
         font-size: 1rem; }
   .blog_contents .text_area img {
-    margin: 20px 0 20px 0;
     width: auto;
-    max-height: 500px;
     max-width: 100%;
     height: auto; }
   .blog_contents .archive .list_archive {
