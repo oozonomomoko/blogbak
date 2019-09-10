@@ -2330,11 +2330,19 @@ li.pager_btn.pager_btn_next,li.pager_btn.pager_btn_prev {
     font-weight: bold;
     line-height: 16pt;
     word-break: break-word;}
+.translate span {
+    color: white;
+    background: gray;
+    padding: 5px;
+    cursor: pointer;
+    user-select: none;
+}
 .translate {
     float: right;
-    background: gray;
-    color: #FFF;
     padding: 2pt 6pt;
+}
+.translate span:hover,.translate span.select {
+    background-color: #c676cc;
 }
 .loading:after {
     animation-duration: 1.5s;
