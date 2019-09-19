@@ -178,7 +178,7 @@ $(document).ready(function () {
                             data: {
                                 id: id,
                                 title: $(".article_blogkiji .title a").html(),
-                                content: textArea.html()
+                                content: textArea.innerHTML()
                             },
                             dataType: "json",
                             success: function (data) {
@@ -217,7 +217,7 @@ function toEdit(){
         async: false,
         success: function (data) {
             if (data.result){
-                textArea.css('user-modify', 'read-write-plaintext-only');
+                textArea.style.webkitUserModify = 'read-write-plaintext-only'
                 renderHtml(this, '<p class="transLine">' + detail.transTitle + '</p>' + detail.title, detail.date, zh[week], conEle);
                 $(".translate span")[3].style.display = '';
             } else {

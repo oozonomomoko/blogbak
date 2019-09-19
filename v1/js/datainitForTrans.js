@@ -1,12 +1,3 @@
-var en = {
-    1: "Mon",
-    2: "Tues",
-    3: "Wed",
-    4: "Thur",
-    5: "Fri",
-    6: "Sat",
-    0: "Sun"
-};
 var zh = {
     1: "周一",
     2: "周二",
@@ -17,30 +8,6 @@ var zh = {
     0: "周日"
 };
 
-function hasContent(ele, transele) {
-    return ele && ele.textContent && ele.textContent.trim() && ele.textContent != transele.textContent;
-}
-
-function contactTrans(src, trans) {
-    var len = src.childNodes.length;
-    if (len == 0) {
-        return;
-    }
-    for (var i = 0; i < len; i++) {
-        if ('#text' == src.childNodes[i].nodeName && hasContent(src.childNodes[i],trans.childNodes[i])) {
-            src.insertBefore($.parseHTML('<p class="transLine">' + trans.childNodes[i].textContent + '</p>')[0], src.childNodes[i]);
-            trans.insertBefore(document.createElement('p'), trans.childNodes[i]);
-            i++;
-            len++;
-        } else {
-            contactTrans(src.childNodes[i], trans.childNodes[i])
-        }
-    }
-}
-function reloadPath(imgpathBack){
-    this.src=imgpathBack;
-    this.onerror=null;
-}
 function replaceImgsrc(ele, imgpath, id) {
     var reg = /\.\.\/\.\.\/photo.*/gi;
     var first = ele.querySelector('img');
@@ -99,7 +66,7 @@ $(document).ready(function () {
     $.ajax({
         type: "GET",
         contentType: "application/x-www-form-urlencoded; charset=UTF-8",
-        url: "../data/" + id,
+        url: "../trans/" + id,
         dataType: "json",
         success: function (detail) {
             var date = new Date(detail.date);
