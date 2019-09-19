@@ -171,6 +171,26 @@ $(document).ready(function () {
                         renderHtml(human, humanTrans.title, detail.date, zh[week], humanTransEle);
                     }
                 };
+                $(".translate span")[2].dblclick = function () {
+                    $.ajax({
+                        type: "GET",
+                        contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+                        url: "../trans/" + id,
+                        dataType: "json",
+                        success: function (trans) {
+                            humanTrans = trans;
+                            humanTransEle = $.parseHTML(humanTrans.content)[0];
+                            replaceImgsrc(humanTransEle, year, id);
+                            renderHtml(human, humanTrans.title, detail.date, zh[week], humanTransEle);
+                        },
+                        error: function (){
+                            if(!confirm('还没人翻译, 要不要翻一个?')){
+                                return;
+                            }
+                            toEdit(detail,week,conEle);
+                        }
+                    });
+                };
                 $(".translate span")[3].onclick = function () {
                     
                     if (!token) 
