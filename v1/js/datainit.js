@@ -187,7 +187,7 @@ function toEdit(){
      $.ajax({
         type: "GET",
         contentType: "application/x-www-form-urlencoded; charset=UTF-8",
-        url: "message/checkToken.do?token=" + token,
+        url: "/nogizaka/message/checkToken.do?token=" + token,
         dataType: "json",
         async: false,
         success: function (data) {
