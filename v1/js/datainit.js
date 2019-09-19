@@ -173,7 +173,7 @@ $(document).ready(function () {
                 $(".translate span")[3].onclick = function () {
                     $.ajax({
                             type: "POST",
-                            contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+                            contentType: "application/json; charset=UTF-8",
                             url: "/nogizaka/message/humanTrans.do",
                             data: {
                                 id: id,
