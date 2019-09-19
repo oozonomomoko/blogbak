@@ -181,14 +181,14 @@ $(document).ready(function () {
                     }
                     $.ajax({
                         type: "POST",
-                        contentType: "application/json; charset=UTF-8",
+                        contentType: "application/json",
                         url: "/nogizaka/message/humanTrans.do",
-                        data: {
+                        data: JSON.stringify({
                             author: token,
                             id: id,
                             title: $(".article_blogkiji .title a").html(),
                             content: textArea.innerHTML
-                        },
+                        }),
                         dataType: "json",
                         success: function (data) {
                             if(data.result) {
