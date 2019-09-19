@@ -163,7 +163,7 @@ $(document).ready(function () {
                                 if(!confirm('还没人翻译, 要不要翻一个?')){
                                     return;
                                 }
-                                toEdit();
+                                toEdit(detail);
                             }
                         });
                     }else{
@@ -205,7 +205,7 @@ $(document).ready(function () {
         }
     });
 });
-function toEdit(){
+function toEdit(detail){
     var token = prompt('输入口令', '');
     if (!token) return;
     
