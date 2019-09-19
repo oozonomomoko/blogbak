@@ -81,9 +81,7 @@ function replaceImgsrc(ele, imgpath, id) {
     }
 }
 var textArea = document.querySelector(".article_blogkiji .text_area");
-function renderHtml(that, title, date, week, contentEle){
-    $(".translate span").css('background-color', 'gray');
-    that.style.backgroundColor = '#c676cc';
+function renderHtml(title, date, week, contentEle){
     textArea.innerHTML = '';
     textArea.appendChild(contentEle);
     $(".article_blogkiji .title a").html(title);
@@ -115,18 +113,9 @@ $(document).ready(function () {
             detail.date = year+'-'+mon+'-'+day+' '+hour+':'+min;
             
             $(".article_blogkiji .author").text(detail.authorName);
-            //$(".ptop a")[0].href = detail.url;
 
-            var conEle = $.parseHTML(detail.content)[0];
-            replaceImgsrc(conEle, year, id);
             var copy = $.parseHTML(detail.content)[0];
             replaceImgsrc(copy, year, id);
-            if (detail.transContent) {
-                let ph = $.parseHTML(detail.transContent);
-                let transEle = ph.length==1?ph[0]:ph[1];
-                replaceImgsrc(transEle, year, id);
-                contactTrans(conEle, transEle);
-            }
             $(".main_list").css("background-image", "url("+getDetailPic(detail.pic, year)+")");
             $("title").text(detail.title);
             $(".page_title_in .en").text(detail.authorName);
@@ -134,72 +123,11 @@ $(document).ready(function () {
             $(".article_blogkiji .title a").attr("href", detail.url);
             $(".profile a").attr("href", '../memberBlog.html#name=' + detail.author);
             
-            // 原文
-            $(".translate span")[0].onclick = function () {
-                renderHtml(this, detail.title, detail.date, en[week], copy);
-            };
-            if (Boolean(detail.transContent)) {
-                // 机翻
-                $(".translate span")[1].onclick = function () {
-                    renderHtml(this, '<p class="transLine">' + detail.transTitle + '</p>' + detail.title, detail.date, zh[week], conEle);
-                };
-                
-                // 人工翻译
-                $(".translate span")[2].onclick = function () {
-                    var human = this;
-                    if (!humanTrans) {
-                        $.ajax({
-                            type: "GET",
-                            contentType: "application/x-www-form-urlencoded; charset=UTF-8",
-                            url: "../trans/" + id,
-                            dataType: "json",
-                            success: function (trans) {
-                                humanTrans = trans;
-                                humanTransEle = $.parseHTML(humanTrans.content)[0];
-                                replaceImgsrc(humanTransEle, year, id);
-                                renderHtml(human, humanTrans.title, detail.date, zh[week], humanTransEle);
-                            },
-                            error: function (){
-                                if(!confirm('还没人翻译, 要不要翻一个?')){
-                                    return;
-                                }
-                                toEdit();
-                            }
-                        });
-                    }else{
-                        renderHtml(human, humanTrans.title, detail.date, zh[week], humanTransEle);
-                    }
-                };
-                
-                $(".translate span")[1].click();
-            } else {
-                $(".translate span")[0].click();
-                $(".translate span")[1].style.display = 'none';
-                $(".translate span")[2].style.display = 'none';
-            }
+            renderHtml(detail.title, detail.date, zh[week], copy);
         }
     });
 });
-function toEdit(){
-    var token = prompt('输入口令', '');
-    if (!token) return;
-    
-     $.ajax({
-        type: "GET",
-        contentType: "application/x-www-form-urlencoded; charset=UTF-8",
-        url: "message/checkToken.do?token=" + token,
-        dataType: "json",
-        async: false,
-        success: function (data) {
-            if (data.result){
-                textArea.css('user-modify', 'read-write-plaintext-only');
-                renderHtml(this, '<p class="transLine">' + detail.transTitle + '</p>' + detail.title, detail.date, zh[week], conEle);
-            } else {
-                alert('口令错误');
-            }
-        }
-     });
-}
+
 $(".btn-hamburger").on('click', function () {
   if ($(this).hasClass("active")) {
     $(this).parents().find(".header").removeClass("open");
