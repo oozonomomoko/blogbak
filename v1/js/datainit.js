@@ -80,6 +80,7 @@ function replaceImgsrc(ele, imgpath, id) {
         }
     }
 }
+var token = null;
 var textArea = document.querySelector(".article_blogkiji .text_area");
 function renderHtml(that, title, date, week, contentEle){
     $(".translate span").css('background-color', 'gray');
@@ -171,29 +172,37 @@ $(document).ready(function () {
                     }
                 };
                 $(".translate span")[3].onclick = function () {
+                    
+                    if (!token) 
+                        token = prompt('输入口令', '');
+                    if (!token) {
+                        alert('提交失败');
+                        return;
+                    }
                     $.ajax({
-                            type: "POST",
-                            contentType: "application/json; charset=UTF-8",
-                            url: "/nogizaka/message/humanTrans.do",
-                            data: {
-                                id: id,
-                                title: $(".article_blogkiji .title a").html(),
-                                content: textArea.innerHTML
-                            },
-                            dataType: "json",
-                            success: function (data) {
-                                if(data.result) {
-                                    alert('保存成功');
-                                    $(".translate span")[3].style.display = 'none';
-                                    //$(".translate span")[2].click();
-                                } else {
-                                    alert(data.msg);
-                                }
-                            },
-                            error: function (){
-                                alert('保存异常');
+                        type: "POST",
+                        contentType: "application/json; charset=UTF-8",
+                        url: "/nogizaka/message/humanTrans.do",
+                        data: {
+                            author: 
+                            id: id,
+                            title: $(".article_blogkiji .title a").html(),
+                            content: textArea.innerHTML
+                        },
+                        dataType: "json",
+                        success: function (data) {
+                            if(data.result) {
+                                alert('保存成功');
+                                $(".translate span")[3].style.display = 'none';
+                                //$(".translate span")[2].click();
+                            } else {
+                                alert(data.msg);
                             }
-                        });
+                        },
+                        error: function (){
+                            alert('保存异常');
+                        }
+                    });
                 };
                 
                 $(".translate span")[1].click();
@@ -206,7 +215,7 @@ $(document).ready(function () {
     });
 });
 function toEdit(detail,week,conEle){
-    var token = prompt('输入口令', '');
+    token = prompt('输入口令', '');
     if (!token) return;
     
      $.ajax({
