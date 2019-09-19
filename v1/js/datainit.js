@@ -170,6 +170,31 @@ $(document).ready(function () {
                         renderHtml(human, humanTrans.title, detail.date, zh[week], humanTransEle);
                     }
                 };
+                $(".translate span")[3].onclick = function () {
+                    $.ajax({
+                            type: "POST",
+                            contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+                            url: "/nogizaka/message/humanTrans.do",
+                            data: {
+                                id: id,
+                                title: $(".article_blogkiji .title a").html(),
+                                content: textArea.html()
+                            },
+                            dataType: "json",
+                            success: function (data) {
+                                if(data.result) {
+                                    alert('保存成功');
+                                    $(".translate span")[3].style.display = 'none';
+                                    //$(".translate span")[2].click();
+                                } else {
+                                    alert(data.msg);
+                                }
+                            },
+                            error: function (){
+                                alert('保存异常');
+                            }
+                        });
+                };
                 
                 $(".translate span")[1].click();
             } else {
@@ -194,6 +219,7 @@ function toEdit(){
             if (data.result){
                 textArea.css('user-modify', 'read-write-plaintext-only');
                 renderHtml(this, '<p class="transLine">' + detail.transTitle + '</p>' + detail.title, detail.date, zh[week], conEle);
+                $(".translate span")[3].style.display = '';
             } else {
                 alert('口令错误');
             }
