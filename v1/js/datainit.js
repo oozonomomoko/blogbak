@@ -178,7 +178,7 @@ $(document).ready(function () {
                             data: {
                                 id: id,
                                 title: $(".article_blogkiji .title a").html(),
-                                content: textArea.innerHTML()
+                                content: textArea.innerHTML
                             },
                             dataType: "json",
                             success: function (data) {
