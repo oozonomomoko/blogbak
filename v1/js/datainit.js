@@ -184,7 +184,7 @@ $(document).ready(function () {
                         contentType: "application/json; charset=UTF-8",
                         url: "/nogizaka/message/humanTrans.do",
                         data: {
-                            author: 
+                            author: token,
                             id: id,
                             title: $(".article_blogkiji .title a").html(),
                             content: textArea.innerHTML
