@@ -218,7 +218,7 @@ function toEdit(detail,week,conEle){
         success: function (data) {
             if (data.result){
                 textArea.style.webkitUserModify = 'read-write-plaintext-only'
-                renderHtml(this, '<p class="transLine">' + detail.transTitle + '</p>' + detail.title, detail.date, zh[week], conEle);
+                renderHtml($(".translate span")[2], '<p class="transLine">' + detail.transTitle + '</p>' + detail.title, detail.date, zh[week], conEle);
                 $(".translate span")[3].style.display = '';
             } else {
                 alert('口令错误');
