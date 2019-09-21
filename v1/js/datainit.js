@@ -161,7 +161,7 @@ $(document).ready(function () {
                                 renderHtml(2, humanTrans.title, detail.date, zh[week], humanTransEle);
                             },
                             error: function (){
-                                toEdit(detail.title,detail.date,week,conEle);
+                                toEdit('<p class="transLine">' + detail.transTitle + '</p>' + detail.title,detail.date,week,conEle);
                             }
                         });
                     }else{
