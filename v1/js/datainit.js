@@ -82,12 +82,14 @@ function replaceImgsrc(ele, imgpath, id) {
 }
 var token = null;
 var textArea = document.querySelector(".article_blogkiji .text_area");
+var titleArea = document.querySelector(".article_blogkiji .title");
 function renderHtml(that, title, date, week, contentEle){
     $(".translate span").css('background-color', 'gray');
-    that.style.backgroundColor = '#c676cc';
+    $(".translate span")[that].style.backgroundColor = '#c676cc';
     textArea.innerHTML = '';
-    textArea.appendChild(contentEle);
-    $(".article_blogkiji .title a").html(title);
+    if(contentEle)
+        textArea.appendChild(contentEle);
+    titleArea.innerHTML = title;
     $(".article_blogkiji .day").text(date + " | " + week);
     new Nogipic().init(textArea);
 }
@@ -132,22 +134,20 @@ $(document).ready(function () {
             $("title").text(detail.title);
             $(".page_title_in .en").text(detail.authorName);
             $(".page_title_in .jp").text(detail.author.toUpperCase());
-            $(".article_blogkiji .title a").attr("href", detail.url);
             $(".profile a").attr("href", '../memberBlog.html#name=' + detail.author);
             
             // 原文
             $(".translate span")[0].onclick = function () {
-                renderHtml(this, detail.title, detail.date, en[week], copy);
+                renderHtml(0, detail.title, detail.date, en[week], copy);
             };
             if (Boolean(detail.transContent)) {
                 // 机翻
                 $(".translate span")[1].onclick = function () {
-                    renderHtml(this, '<p class="transLine">' + detail.transTitle + '</p>' + detail.title, detail.date, zh[week], conEle);
+                    renderHtml(1, '<p class="transLine">' + detail.transTitle + '</p>' + detail.title, detail.date, zh[week], conEle);
                 };
                 
                 // 人工翻译
                 $(".translate span")[2].onclick = function () {
-                    var human = this;
                     if (!humanTrans) {
                         $.ajax({
                             type: "GET",
@@ -158,21 +158,19 @@ $(document).ready(function () {
                                 humanTrans = trans;
                                 humanTransEle = $.parseHTML(humanTrans.content)[0];
                                 replaceImgsrc(humanTransEle, year, id);
-                                renderHtml(human, humanTrans.title, detail.date, zh[week], humanTransEle);
+                                renderHtml(2, humanTrans.title, detail.date, zh[week], humanTransEle);
                             },
                             error: function (){
-                                if(!confirm('还没人翻译, 要不要翻一个?')){
-                                    return;
-                                }
-                                toEdit(detail,week,conEle);
+                                toEdit(detail.title,detail.date,week,conEle);
                             }
                         });
                     }else{
-                        renderHtml(human, humanTrans.title, detail.date, zh[week], humanTransEle);
+                        renderHtml(2, humanTrans.title, detail.date, zh[week], humanTransEle);
                     }
                 };
-                $(".translate span")[2].dblclick = function () {
-                    $.ajax({
+                // 人工翻译 修改
+                $(".humantrans a").click(function () {
+                     $.ajax({
                         type: "GET",
                         contentType: "application/x-www-form-urlencoded; charset=UTF-8",
                         url: "../trans/" + id,
@@ -181,22 +179,24 @@ $(document).ready(function () {
                             humanTrans = trans;
                             humanTransEle = $.parseHTML(humanTrans.content)[0];
                             replaceImgsrc(humanTransEle, year, id);
-                            renderHtml(human, humanTrans.title, detail.date, zh[week], humanTransEle);
+                            toEdit(humanTrans.title,humanTrans.date,week,humanTransEle);
                         },
                         error: function (){
-                            if(!confirm('还没人翻译, 要不要翻一个?')){
-                                return;
-                            }
-                            toEdit(detail,week,conEle);
+                            toEdit('<p class="transLine">' + detail.transTitle + '</p>' + detail.title,detail.date,week,conEle);
                         }
                     });
-                };
-                $(".translate span")[3].onclick = function () {
                     
+                });
+                // 保存
+                $(".translate span")[3].onclick = function () {
                     if (!token) 
                         token = prompt('输入口令', '');
                     if (!token) {
                         alert('提交失败');
+                        return;
+                    }
+                    if(!textArea.innerHTML) {
+                        alert('提交失败,内容为空');
                         return;
                     }
                     $.ajax({
@@ -206,15 +206,16 @@ $(document).ready(function () {
                         data: JSON.stringify({
                             author: token,
                             id: id,
-                            title: $(".article_blogkiji .title a").html(),
+                            title: titleArea.innerHTML,
                             content: textArea.innerHTML
                         }),
                         dataType: "json",
                         success: function (data) {
                             if(data.result) {
-                                alert('保存成功');
                                 $(".translate span")[3].style.display = 'none';
-                                //$(".translate span")[2].click();
+                                titleArea.style.webkitUserModify = '';
+                                textArea.style.webkitUserModify = '';
+                                alert('保存成功');
                             } else {
                                 alert(data.msg);
                             }
@@ -225,16 +226,16 @@ $(document).ready(function () {
                     });
                 };
                 
-                $(".translate span")[1].click();
+                renderHtml(1, '<p class="transLine">' + detail.transTitle + '</p>' + detail.title, detail.date, zh[week], conEle);
             } else {
-                $(".translate span")[0].click();
+                renderHtml(0, detail.title, detail.date, en[week], copy);
                 $(".translate span")[1].style.display = 'none';
                 $(".translate span")[2].style.display = 'none';
             }
         }
     });
 });
-function toEdit(detail,week,conEle){
+function toEdit(title,date,week,conEle){
     token = prompt('输入口令', '');
     if (!token) return;
     
@@ -246,8 +247,10 @@ function toEdit(detail,week,conEle){
         async: false,
         success: function (data) {
             if (data.result){
-                textArea.style.webkitUserModify = 'read-write-plaintext-only'
-                renderHtml($(".translate span")[2], '<p class="transLine">' + detail.transTitle + '</p>' + detail.title, detail.date, zh[week], conEle);
+                titleArea.style.webkitUserModify = 'read-write-plaintext-only';
+                textArea.style.webkitUserModify = 'read-write-plaintext-only';
+                renderHtml(2, title, date, zh[week], conEle);
+                //显示保存按钮
                 $(".translate span")[3].style.display = '';
             } else {
                 alert('口令错误');

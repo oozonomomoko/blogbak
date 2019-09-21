@@ -2338,8 +2338,7 @@ li.pager_btn.pager_btn_next,li.pager_btn.pager_btn_prev {
     user-select: none;
 }
 .translate {
-    float: right;
-    padding: 2pt 6pt;
+ margin-top:10px;
 }
 .translate span:hover,.translate span.select {
     background-color: #c676cc;
