@@ -18,7 +18,7 @@ var zh = {
 };
 
 function hasContent(ele, transele) {
-    return ele && ele.textContent && ele.textContent.trim() && ele.textContent != transele.textContent;
+    return ele && ele.textContent && ele.textContent.trim();
 }
 
 function contactTrans(src, trans) {
