@@ -1,0 +1,52 @@
+<!--  style="background-color: black;transform: scale(2);margin: 20% auto;" -->
+<svg width="1000" height="1000" fill="black" xmlns="http://www.w3.org/2000/svg">
+    <path fill="#c679d0" stroke="white" stroke-width="1" d="M0 50 L50 50 L50 0 Z">
+        <animate attributeName="opacity" from="0" to="1" begin="0s" dur="0.5s" fill="freeze"/>
+        <animateMotion from="0,0" to="12,12" begin="0s" dur="1.5s" fill="freeze"/>
+        <animateMotion from="12,12" to="0,0" begin="3s" dur="0.5s" fill="freeze"/>
+    </path>
+    <path fill="#01b100" stroke="white" stroke-width="1" style="opacity:0;" d="M0 50 L50 50 L50 0 Z">
+        <animate attributeName="opacity" from="0" to="1" begin="0.5s" dur="0.5s" fill="freeze"/>
+        <animateMotion from="0,0" to="8,8" begin="0.5s" dur="1s" fill="freeze"/>
+        <animateMotion from="8,8" to="0,0" begin="3s" dur="0.5s" fill="freeze"/>
+    </path>
+    <path fill="#f77f28" stroke="white" stroke-width="1" style="opacity:0;" d="M0 50 L50 50 L50 0 Z">
+        <animate attributeName="opacity" from="0" to="1" begin="1s" dur="0.5s" fill="freeze"/>
+        <animateMotion from="0,0" to="4,4" begin="1s" dur="0.5s" fill="freeze"/>
+        <animateMotion from="4,4" to="0,0" begin="3s" dur="0.5s" fill="freeze"/>
+    </path>
+    <path fill="#93d2ff" stroke="white" stroke-width="1" style="opacity:0;" d="M0 50 L50 50 L50 0 Z">
+        <animate attributeName="opacity" from="0" to="1" begin="1.5s" dur="0.5s" fill="freeze"/>
+        <animate attributeName="fill" from="#93d2ff" to="white" begin="3s" dur="1s" fill="freeze"/>
+        <animate attributeName="stroke" from="white" to="#a7a5a5" begin="3.5s" dur="1s" fill="freeze"/>
+        <animate attributeName="stroke-width" from="1" to="0.5" begin="3.5s" dur="1s" fill="freeze"/>
+    </path>
+    <path stroke="#c679d0" stroke-width="1" style="opacity:0;" d="M0 50 L50 0">
+        <animate attributeName="opacity" from="0" to="1" begin="4s" dur="0.5s" fill="freeze"/>
+    </path>
+    <path stroke="#01b100" stroke-width="1" style="opacity:0;" d="M50 0 L50 50">
+        <animate attributeName="opacity" from="0" to="1" begin="4s" dur="0.5s" fill="freeze"/>
+    </path>
+    <path stroke="#93d2ff" stroke-width="1" style="opacity:0;" d="M50 50 L0 50">
+        <animate attributeName="opacity" from="0" to="1" begin="4s" dur="0.5s" fill="freeze"/>
+    </path>
+     <g transform="scale(0.08)" stroke="#c679d0" stroke-width="2" fill-opacity="0">
+        <path fill="#c679d0" d="M8.75223,199.0063L126.99775,199L126.99775,243.3297L155,243.49635L154.99744,199.49683L179.49717,199.49683L186.4971,189.99694L155,189.49694L155,3.99898L8.75223,199z" mask="url(#mask4)" style="pointer-events:inherit" class="knmRRZjB_0"></path>
+        <mask id="mask4" style="pointer-events:inherit" fill-opacity="1">
+            <path fill="white" d="M8.75223,199.0063L126.99775,199L126.99775,243.3297L155,243.49635L154.99744,199.49683L179.49717,199.49683L186.4971,189.99694L155,189.49694L155,3.99898L8.75223,199z" style="pointer-events:inherit" class="knmRRZjB_1"></path>
+            <path fill="black" d="M126.49972893202732,189.7799839420729 L126.49972893202732,59.78035695656237 L29.50000484205427,189.7799839420729 L126.49972893202732,189.7799839420729 z" style="pointer-events:inherit" class="knmRRZjB_2"></path>
+        </mask>
+        <path fill="#c679d0" d="M344.49856,63.74834C344.49856,63.74834 354.99845,63.24834 354.74526,62.74835C348.49852,-5.7509 237.99973,-18.75076 210.50003,57.7484C193.50022,104.58108 186.50029,214.74668 243.99967,243.24638C309.49897,270.41269 361.41498,217.99663 360.24515,169.74712C359.03845,120.08106 327.97708,92.623 298.23823,87.76889C268.49939,82.91478 235.41641,97.66464 224.16654,116.41444C226.83321,70.91494 235.1664,42.91522 254.24636,26.74875C285.49919,3.249 333.99868,16.74885 344.49856,63.74834z" mask="url(#mask6)" style="pointer-events:inherit" class="knmRRZjB_3"></path>
+        <mask id="mask6" style="pointer-events:inherit" fill-opacity="1"><path fill="white" d="M344.49856,63.74834C344.49856,63.74834 354.99845,63.24834 354.74526,62.74835C348.49852,-5.7509 237.99973,-18.75076 210.50003,57.7484C193.50022,104.58108 186.50029,214.74668 243.99967,243.24638C309.49897,270.41269 361.41498,217.99663 360.24515,169.74712C359.03845,120.08106 327.97708,92.623 298.23823,87.76889C268.49939,82.91478 235.41641,97.66464 224.16654,116.41444C226.83321,70.91494 235.1664,42.91522 254.24636,26.74875C285.49919,3.249 333.99868,16.74885 344.49856,63.74834z" style="pointer-events:inherit" class="knmRRZjB_4"></path>
+        <path fill="black" id="svg_2" stroke-dasharray="none" stroke="null" style="pointer-events:inherit" d="M225.24984672365034,168.74716787108017A55.74939619010653,72.99921133127549 0,1,1 336.7486391038634,168.74716787108017A55.74939619010653,72.99921133127549 0,1,1 225.24984672365034,168.74716787108017" class="knmRRZjB_5"></path></mask>
+        
+        <animate attributeName="fill" from="#c679d0" to="#01b100" begin="0s" dur="0.5s" fill="freeze"/>
+        <animate attributeName="fill" from="#01b100" to="#f77f28" begin="0.5s" dur="0.5s" fill="freeze"/>
+        <animate attributeName="fill" from="#f77f28" to="#93d2ff" begin="1s" dur="0.5s" fill="freeze"/>
+        <animate attributeName="fill" from="#93d2ff" to="#a7a5a5" begin="3s" dur="0.5s" fill="freeze"/>
+        <animateMotion from="0,0" to="20,28" begin="3s" dur="1s" fill="freeze"/>
+        <animate attributeName="fill-opacity" from="0" to="1" begin="3s" dur="1s" fill="freeze"></animate>
+        <animate attributeName="stroke-width" from="1" to="0" begin="3s" dur="1s" fill="freeze"></animate>
+        <style data-made-with="vivus-instant">.knmRRZjB_0{stroke-dasharray:732 734;stroke-dashoffset:733;animation:knmRRZjB_draw 2000ms linear 0ms forwards;}.knmRRZjB_1{stroke-dasharray:732 734;stroke-dashoffset:733;animation:knmRRZjB_draw 2000ms linear 200ms forwards;}.knmRRZjB_2{stroke-dasharray:390 392;stroke-dashoffset:391;animation:knmRRZjB_draw 2000ms linear 400ms forwards;}.knmRRZjB_3{stroke-dasharray:982 984;stroke-dashoffset:983;animation:knmRRZjB_draw 2000ms linear 600ms forwards;}.knmRRZjB_4{stroke-dasharray:982 984;stroke-dashoffset:983;animation:knmRRZjB_draw 2000ms linear 800ms forwards;}.knmRRZjB_5{stroke-dasharray:407 409;stroke-dashoffset:408;animation:knmRRZjB_draw 2000ms linear 1000ms forwards;}@keyframes knmRRZjB_draw{100%{stroke-dashoffset:0;}}@keyframes knmRRZjB_fade{0%{stroke-opacity:1;}94.44444444444444%{stroke-opacity:1;}100%{stroke-opacity:0;}}</style>
+     </g>
+</svg>
