@@ -1,0 +1,58 @@
+﻿<html>
+<head> 
+    <script type="text/javascript" src="v1/js/wordcloud2.min.js"></script>
+    <script type="text/javascript" src="v1/js/jquery-3.1.1.min.js"></script>
+    <script type="text/javascript" src="wordData3.js"></script>
+    <style>
+    canvas{
+        border:solid white 5px;
+    }
+    </style>
+</head> 
+<body>
+    <div id="canvas-container" style="float: left">
+    </div>
+    <script>
+        var canvasCon = document.getElementById('canvas-container');
+        for (let d=0;d<wordFreqDataList.length;d++){
+    
+            var canvas = document.createElement('canvas');
+            canvas.width=720;
+            canvas.height=720;
+            canvasCon.appendChild(canvas);
+            //排序
+            let wordFreqData = wordFreqDataList[d];
+            wordFreqData.sort(function(a,b){return b[1]-a[1]});
+            // 计算所有字符占用面积
+            let total = 0;
+            for (let i=0; i<wordFreqData.length; i++)
+            {
+                total += wordFreqData[i][0].length * wordFreqData[i][1] * wordFreqData[i][1];
+            }
+            
+            // weightFactor 
+            let weightFactor = Math.sqrt(canvas.width*canvas.height/total);
+            console.log(weightFactor);
+            
+            // 词云配置
+            var options = eval({
+                    "list": wordFreqData,// 数据列表，以2维数组形式[[单词，大小]，[单词，大小]]
+                    "fontFamily": 'Times, serif', // 字体
+                    "fontWeight": 'bold', //字体粗细
+                    "weightFactor": weightFactor, // 字体大小=原始大小*weightFactor
+                    "color": 'random-light', // 字体颜色 'random-dark' 或者 'random-light'
+                    "gridSize": 10, // 密集程度 数字越小越密集
+                    "backgroundColor": '#333', // 背景颜色
+                    "rotateRatio": 1,// 字体倾斜(旋转)概率，1代表总是倾斜(旋转)
+                    "maxRotation": 0.8,
+                    "minRotation": -0.8,
+                    "shape":"circle" // 形状
+                });
+            //生成
+            WordCloud(canvas, options);
+        }
+    </script>
+</body>
+</html>
+
+
