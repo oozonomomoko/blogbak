@@ -93,19 +93,20 @@ function renderHtml(that, title, date, week, contentEle){
     $(".article_blogkiji .day").text(date + " | " + week);
     new Nogipic().init(textArea);
 }
-var domain;
 var humanTrans = null;
 var humanTransEle = null;
 $(document).ready(function () {
     var href = window.location.href;
     var id = href.split("?")[1].split("&")[0].split("=")[1].split("#")[0];
+        
+    var domain = id<'52056'?'/blog/':'/blogbak/';
     function getDetailPic(pic, year){
-        return pic.replace(/http.*ikuta\.club\/nogizaka\//,'../').replace(/http.*img\.nogizaka46\.com\/www\/smph\/member\/img/, '../image/head').replace(/\/\d{8}\//,'/'+year+'/');
+        return pic.replace(/http.*ikuta\.club\/nogizaka\//,domain).replace(/http.*img\.nogizaka46\.com\/www\/smph\/member\/img/, '../image/head').replace(/\/\d{8}\//,'/'+year+'/');
     }
     $.ajax({
         type: "GET",
         contentType: "application/x-www-form-urlencoded; charset=UTF-8",
-        url: "../data/" + id,
+        url: domain + "data/" + id,
         dataType: "json",
         success: function (detail) {
             var date = new Date(detail.date);
@@ -118,11 +119,6 @@ $(document).ready(function () {
             var week = date.getDay();
             detail.date = year+'-'+mon+'-'+day+' '+hour+':'+min;
             
-            if((year+'-'+mon+'-'+day)>'2019-08-08') {
-                domain = "http://kakiharuka.gitee.io/blogbak/";
-            }else {
-                domain = "http://oozonomomoko.github.io/blog/";
-            }
             $(".article_blogkiji .author").text(detail.authorName);
             //$(".ptop a")[0].href = detail.url;
 
