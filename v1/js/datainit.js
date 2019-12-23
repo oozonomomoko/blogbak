@@ -99,7 +99,7 @@ $(document).ready(function () {
     var href = window.location.href;
     var id = href.split("?")[1].split("&")[0].split("=")[1].split("#")[0];
         
-    var domain = id<'52056'?'/blog/':'/blogbak/';
+    var domain = id<52056?'/blog/':'/blogbak/';
     function getDetailPic(pic, year){
         return pic.replace(/http.*ikuta\.club\/nogizaka\//,domain).replace(/http.*img\.nogizaka46\.com\/www\/smph\/member\/img/, '../image/head').replace(/\/\d{8}\//,'/'+year+'/');
     }
