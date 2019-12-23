@@ -121,7 +121,7 @@ $(document).ready(function () {
             if((year+'-'+mon+'-'+day)>'2019-08-08') {
                 domain = "http://kakiharuka.gitee.io/blogbak/";
             }else {
-                domain = "http://nogizaka.gitee.io/blog/";
+                domain = "http://oozonomomoko.github.io/blog/";
             }
             $(".article_blogkiji .author").text(detail.authorName);
             //$(".ptop a")[0].href = detail.url;
