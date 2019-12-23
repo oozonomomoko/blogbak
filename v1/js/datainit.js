@@ -59,7 +59,7 @@ function replaceImgsrc(ele, imgpath, id) {
             img.src = imgMap[old];
         } else if (old) {
             var type = old.substr(old.lastIndexOf("."));
-            var newSrc = "../blog/" + imgpath + "/" + id + "_" + index + type;
+            var newSrc = domain + "blog/" + imgpath + "/" + id + "_" + index + type;
             img.src = newSrc;
             imgMap[old] = newSrc;
         }
@@ -93,6 +93,7 @@ function renderHtml(that, title, date, week, contentEle){
     $(".article_blogkiji .day").text(date + " | " + week);
     new Nogipic().init(textArea);
 }
+var domain;
 var humanTrans = null;
 var humanTransEle = null;
 $(document).ready(function () {
@@ -117,6 +118,11 @@ $(document).ready(function () {
             var week = date.getDay();
             detail.date = year+'-'+mon+'-'+day+' '+hour+':'+min;
             
+            if((year+'-'+mon+'-'+day)>'2019-08-08') {
+                domain = "/blogbak/";
+            }else {
+                domain = "/blog/";
+            }
             $(".article_blogkiji .author").text(detail.authorName);
             //$(".ptop a")[0].href = detail.url;
 
