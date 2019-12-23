@@ -119,9 +119,9 @@ $(document).ready(function () {
             detail.date = year+'-'+mon+'-'+day+' '+hour+':'+min;
             
             if((year+'-'+mon+'-'+day)>'2019-08-08') {
-                domain = "/blogbak/";
+                domain = "http://kakiharuka.gitee.io/blogbak/";
             }else {
-                domain = "/blog/";
+                domain = "http://nogizaka.gitee.io/blog/";
             }
             $(".article_blogkiji .author").text(detail.authorName);
             //$(".ptop a")[0].href = detail.url;
