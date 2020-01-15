@@ -102,7 +102,9 @@ $(document).ready(function () {
         
     domain = id<52056?'/blog/':'/blogbak/';
     function getDetailPic(pic, year){
-        return pic.replace(/http.*ikuta\.club\/nogizaka\//,domain).replace(/http.*img\.nogizaka46\.com\/www\/smph\/member\/img/, '../image/head').replace(/\/\d{8}\//,'/'+year+'/');
+        return pic.replace(/http.*img\.nogizaka46\.com\/www\/smph\/member\/img/, domain+'image/head')
+                .replace(/http.*?\//,'').replace(/\/nogizaka\//,domain)
+                .replace(/\/\d{8}\//,'/'+year+'/');
     }
     $.ajax({
         type: "GET",
