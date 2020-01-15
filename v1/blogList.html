@@ -72,7 +72,9 @@
         var domain = "../";
         var lastRenderTime = new Date();
         function getDetailPic(pic, year){
-            return pic.replace(/http.*ikuta\.club\/nogizaka\//,domain).replace(/http.*img\.nogizaka46\.com\/www\/smph\/member\/img/, domain+'image/head').replace(/\/\d{8}\//,'/'+year+'/');
+            return pic.replace(/http.*img\.nogizaka46\.com\/www\/smph\/member\/img/, domain+'image/head')
+                .replace(/http.*?\//,'').replace(/\/nogizaka\//,domain)
+                .replace(/\/\d{8}\//,'/'+year+'/');
         }
         function sort(list){
             for (let i=0; i<list.length-1; i++) {
