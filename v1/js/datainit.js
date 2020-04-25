@@ -99,7 +99,7 @@ $(document).ready(function () {
     var href = window.location.href;
     var id = href.split("?")[1].split("&")[0].split("=")[1].split("#")[0];
     function getDetailPic(pic, year){
-        return pic.replace(/http.*ikuta\.club\/nogizaka\//,'../').replace(/http.*img\.nogizaka46\.com\/www\/smph\/member\/img/, '../image/head').replace(/\/\d{8}\//,'/'+year+'/');
+        return pic.replace(/^.*\/nogizaka\//,'../').replace(/http.*img\.nogizaka46\.com\/www\/smph\/member\/img/, '../image/head').replace(/\/\d{8}\//,'/'+year+'/');
     }
     $.ajax({
         type: "GET",
