@@ -6,6 +6,18 @@
     <meta name="viewport" content="width=device-width">
     <meta name="msapplication-TileColor" content="#2b5797">
     <meta name="theme-color" content="#ffffff">
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  var siteId = '70d1469e563a54459a2dcc671646f1c9';
+  if(window.location.href.indexOf('oozonomomoko.github.io')==-1)
+    siteId = 'b9ee32b7529377a7b28f350cce40e995';
+  hm.src = "https://hm.baidu.com/hm.js?"+siteId;
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
 
     <link href="css/index_blue.css" rel="stylesheet">
     <link href="css/css.css" rel="stylesheet">
@@ -72,7 +84,7 @@
         var domain = "../";
         var lastRenderTime = new Date();
         function getDetailPic(pic, year){
-            return pic.replace(/http.*ikuta\.club\/nogizaka\//,domain).replace(/http.*img\.nogizaka46\.com\/www\/smph\/member\/img/, domain+'image/head').replace(/\/\d{8}\//,'/'+year+'/');
+            return pic.replace(/^.*\/nogizaka\//,domain).replace(/http.*img\.nogizaka46\.com\/www\/smph\/member\/img/, domain+'image/head').replace(/\/\d{8}\//,'/'+year+'/');
         }
         function sort(list){
             for (let i=0; i<list.length-1; i++) {
@@ -111,7 +123,7 @@
                             var hour = date.getHours() < 10 ? "0" + date.getHours() : date.getHours();
                             var min = date.getMinutes() < 10 ? "0" + date.getMinutes() : date.getMinutes();
                             var headImg = getHeadImgUrl(detail.author);
-                            innerHTML += "<div class=\"list_card\"><a href=\"blogDetail.html?id=" + detail.id + "\"><div class=\"blog_card\"><div class=\"thumb\">";
+                            innerHTML += "<div class=\"list_card\"><a href=\""+domain+"v1/blogDetail.html?id=" + detail.id + "\"><div class=\"blog_card\"><div class=\"thumb\">";
                             innerHTML += "<div class=\"thumb_img\" style=\"background-image:url(" + getDetailPic(detail.pic, year) + ");\"></div></div>";
                             innerHTML += "<div class=\"box\"><div class=\"author\">#" + detail.authorName + "#</div><div class=\"title\">" + detail.title + "</div>";
                             innerHTML += "<div class=\"date\">" + year + "." + mon + "." + day + " " + hour + ":" + min + "</div></div></div></a></div>";
@@ -186,10 +198,12 @@
                 'needRoot': true,
                 'change':function(date){
                     console.log(date);
-                    if(date>'2019-08-08') {
-                        domain = "/blogbak/";
-                    }else {
-                        domain = "/blog/";
+                    if(date>'2020-04-24') {
+                        domain = "../";
+                    }else if(date>'2019-08-08') {
+                        domain = "https://oozonomomoko.github.io/blogbak/";
+                    }else{
+                        domain = "https://oozonomomoko.github.io/blog/";
                     }
                     showList(date);
                     window.location.href = '#' + date;

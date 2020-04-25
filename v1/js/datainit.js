@@ -59,7 +59,7 @@ function replaceImgsrc(ele, imgpath, id) {
             img.src = imgMap[old];
         } else if (old) {
             var type = old.substr(old.lastIndexOf("."));
-            var newSrc = domain + "blog/" + imgpath + "/" + id + "_" + index + type;
+            var newSrc = "../blog/" + imgpath + "/" + id + "_" + index + type;
             img.src = newSrc;
             imgMap[old] = newSrc;
         }
@@ -93,21 +93,18 @@ function renderHtml(that, title, date, week, contentEle){
     $(".article_blogkiji .day").text(date + " | " + week);
     new Nogipic().init(textArea);
 }
-var domain;
 var humanTrans = null;
 var humanTransEle = null;
 $(document).ready(function () {
     var href = window.location.href;
     var id = href.split("?")[1].split("&")[0].split("=")[1].split("#")[0];
-        
-    domain = id<52056?'/blog/':'/blogbak/';
     function getDetailPic(pic, year){
-        return pic.replace(/http.*ikuta\.club\/nogizaka\//,domain).replace(/http.*img\.nogizaka46\.com\/www\/smph\/member\/img/, '../image/head').replace(/\/\d{8}\//,'/'+year+'/');
+        return pic.replace(/http.*ikuta\.club\/nogizaka\//,'../').replace(/http.*img\.nogizaka46\.com\/www\/smph\/member\/img/, '../image/head').replace(/\/\d{8}\//,'/'+year+'/');
     }
     $.ajax({
         type: "GET",
         contentType: "application/x-www-form-urlencoded; charset=UTF-8",
-        url: domain + "data/" + id,
+        url: "../data/" + id,
         dataType: "json",
         success: function (detail) {
             var date = new Date(detail.date);

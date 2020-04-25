@@ -82,7 +82,7 @@ window.Nogidate = (function(){
             if (!document.getElementById('nogidatestyle')) {
                 let style = document.createElement('style');
                 style.setAttribute('id', 'nogidatestyle');
-                style.innerHTML='.nogidate ul {list-style: none;margin: 0;transition: 0.35s;-moz-transition: 0.35s;-webkit-transition: 0.35s;}.nogicurr{font-family:\'Poiret One\',sans-serif;color: #44c9ff;font-weight: bold;}.nogidate {display: flex;cursor: pointer;-moz-user-select:none;-webkit-user-select:none;-ms-user-select:none;-khtml-user-select:none;user-select:none;-webkit-tap-highlight-color: rgba(0, 0, 0, 0);}.nogiyear .nogicurr:after{content: " 年";}.nogimon .nogicurr:after{content: " 月";}.nogiday .nogicurr:after{content: " 日";}.nogidate li{height: 22px;}';
+                style.innerHTML='.nogidate ul {list-style: none;margin: 0;transition: 0.35s;-moz-transition: 0.35s;-webkit-transition: 0.35s;}.nogicurr{font-family:\'Poiret One\',sans-serif;color: #44c9ff;font-weight: bold;}.nogidate {display: flex;cursor: pointer;-moz-user-select:none;-webkit-user-select:none;-ms-user-select:none;-khtml-user-select:none;user-select:none;-webkit-tap-highlight-color: rgba(0, 0, 0, 0);height: 16px;overflow: hidden;padding-top: 46px;padding-bottom: 46px;margin: 0 auto;}.nogiyear .nogicurr:after{content: " 年";}.nogimon .nogicurr:after{content: " 月";}.nogiday .nogicurr:after{content: " 日";}.nogidate li{height: 22px;}';
                 document.body.appendChild(style);
             }
 
